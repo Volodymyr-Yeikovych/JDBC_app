@@ -28,7 +28,7 @@ public class Main {
             System.out.println();
             while (!"T".equals(entity) && !"A".equals(entity)) {
                 System.out.print("Invalid parameter. Select author (A) or title (T): ");
-                entity = reader.readLine();
+                entity = reader.readLine().toUpperCase();
                 System.out.println();
             }
 
@@ -43,8 +43,8 @@ public class Main {
             System.out.print("Write author/title id (e. g. 1) max is(" + maxLength + "): ");
             int id = Integer.parseInt(reader.readLine());
             System.out.println();
-            while (id > maxLength && id < 1) {
-                System.out.println("Id is invalid. Either it is more than max or is invalid.");
+            while (id > maxLength || id < 1) {
+                System.out.println("Id is invalid. Either it's more than max or less than 1.");
                 System.out.print("Write correct id: ");
                 id = Integer.parseInt(reader.readLine());
                 System.out.println();
