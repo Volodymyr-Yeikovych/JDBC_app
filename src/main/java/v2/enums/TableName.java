@@ -2,10 +2,9 @@ package v2.enums;
 
 public enum TableName {
     AUTHORS("A"),
-    TITLES("T"),
-    ASS("ASS");
+    TITLES("T");
 
-    private String name;
+    private final String name;
 
     TableName(String name) {
         this.name = name;

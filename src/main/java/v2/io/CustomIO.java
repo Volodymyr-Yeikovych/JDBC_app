@@ -10,4 +10,6 @@ public interface CustomIO {
     default void writeln (String str) {
         write(str + "\n");
     }
+
+    void close();
 }

@@ -7,6 +7,8 @@ import v2.io.ConsoleIO;
 public class Main {
 
     public static void main(String[] args) {
-        new CustomController(new ConsoleIO(), new CustomDBImpl()).run();
+        CustomController controller = new CustomController(new ConsoleIO(), new CustomDBImpl());
+        controller.run();
+        controller.close();
     }
 }

@@ -7,8 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//@Slf4j
 public class CustomDBImpl implements CustomDB{
+
+    private Connection psqlDBConnection;
 
     @Override
     public ResultSet getAuthorById(long id) {
@@ -32,15 +33,18 @@ public class CustomDBImpl implements CustomDB{
 
     @Override
     public void close() {
-
+        try {
+            psqlDBConnection.close();
+        } catch (SQLException e) {
+            throw new SQLExceptionWrapper(e);
+        }
     }
 
     @Override
     public Connection getConnection() {
         try {
-            Connection psqlDBConnection = DriverManager.getConnection(url, usrName, password);
-//            logger.info
-            return DriverManager.getConnection(url, usrName, password);
+            psqlDBConnection = DriverManager.getConnection(url, usrName, password);
+            return psqlDBConnection;
         } catch (SQLException e) {
             throw new SQLExceptionWrapper(e);
         }

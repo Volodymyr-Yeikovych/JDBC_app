@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleIO implements CustomIO{
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 
     @Override
@@ -22,5 +22,14 @@ public class ConsoleIO implements CustomIO{
     @Override
     public void write(String str) {
         System.out.print(str);
+    }
+
+    @Override
+    public void close() {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            throw new IOExceptionWrapper(e);
+        }
     }
 }

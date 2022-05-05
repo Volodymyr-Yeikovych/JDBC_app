@@ -69,4 +69,9 @@ public class CustomController {
                     default -> Optional.empty();
                 };
     }
+
+    public void close() {
+        io.close();
+        db.close();
+    }
 }
