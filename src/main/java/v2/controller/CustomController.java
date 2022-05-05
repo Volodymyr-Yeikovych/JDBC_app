@@ -47,7 +47,11 @@ public class CustomController {
 
     private void printResult(ResultSet table) throws SQLException {
         ResultSetMetaData auOrTitMetaData = table.getMetaData();
-        table.next();
+        if (table.next()) table.next();
+        else {
+            io.writeln("That id does not exist.");
+            return;
+        }
 
         int columnSize = auOrTitMetaData.getColumnCount();
         for (int i = 1; i <= columnSize; i++) {
