@@ -18,7 +18,7 @@ public class CustomController {
         this.db = db;
     }
 
-    public void run () {
+    public void run() {
         try {
             io.write("Determine which entity to select author/title (type A/T): ");
             TableName entity = TableName.parse(io.readLine().toUpperCase());
@@ -45,9 +45,10 @@ public class CustomController {
 
     }
 
+    @SuppressWarnings("all")
     private void printResult(ResultSet table) throws SQLException {
         ResultSetMetaData auOrTitMetaData = table.getMetaData();
-        if (table.next()) table.next();
+        if (table.next()) ;
         else {
             io.writeln("That id does not exist.");
             return;
