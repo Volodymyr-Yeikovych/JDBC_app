@@ -2,10 +2,7 @@ package v2.db;
 
 import v2.exceptions.SQLExceptionWrapper;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CustomDBImpl implements CustomDB{
 
@@ -14,8 +11,9 @@ public class CustomDBImpl implements CustomDB{
     @Override
     public ResultSet getAuthorById(long id) {
         try {
-            return getConnection().createStatement().executeQuery(
-                    "SELECT * FROM authors WHERE au_id = 'A0" + id + "';");
+            PreparedStatement pst = getConnection().prepareStatement("SELECT * FROM authors WHERE au_id = ?;");
+            pst.setString(1, "A0" + id);
+            return pst.executeQuery();
         } catch (SQLException e) {
             throw new SQLExceptionWrapper(e);
         }
@@ -24,8 +22,9 @@ public class CustomDBImpl implements CustomDB{
     @Override
     public ResultSet getBookById(long id) {
         try {
-            return getConnection().createStatement().executeQuery(
-                    "SELECT * FROM titles WHERE title_id = 'T0" + id + "';");
+            PreparedStatement pst = getConnection().prepareStatement("SELECT * FROM titles WHERE title_id = ?;");
+            pst.setString(1, "T0" + id);
+            return pst.executeQuery();
         } catch (SQLException e) {
             throw new SQLExceptionWrapper(e);
         }
