@@ -1,5 +1,6 @@
 package v2.db;
 
+import org.postgresql.ds.PGSimpleDataSource;
 import v2.exceptions.SQLExceptionWrapper;
 
 import java.sql.*;
@@ -42,7 +43,11 @@ public class CustomDBImpl implements CustomDB{
     @Override
     public Connection getConnection() {
         try {
-            psqlDBConnection = DriverManager.getConnection(url, usrName, password);
+            PGSimpleDataSource source = new PGSimpleDataSource();
+            source.setDatabaseName("firstdb");
+            source.setServerNames(new String[]{"localhost"});
+
+            psqlDBConnection = source.getConnection(usrName, password);
             return psqlDBConnection;
         } catch (SQLException e) {
             throw new SQLExceptionWrapper(e);

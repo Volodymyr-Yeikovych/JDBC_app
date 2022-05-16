@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 public interface CustomDB {
-    String url = "jdbc:postgresql://localhost/firstdb";
     String usrName = "postgres";
     String password = "admin4";
 
